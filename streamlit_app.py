@@ -93,7 +93,7 @@ def detect_one_image(frame_bgr):
 # -------------------------------------------------
 # UI Streamlit
 # -------------------------------------------------
-st.title("Deteksi TBS Sawit per Pohon")
+st.title("Smart Palm Vision")
 
 st.write(f"Pohon yang sedang dinilai: **{st.session_state.tree_id}**")
 
