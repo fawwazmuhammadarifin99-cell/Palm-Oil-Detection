@@ -5,6 +5,76 @@ st.set_page_config(
     layout="wide"
 )
 
+# ============================
+# CUSTOM CSS (TEXT COLORS)
+# ============================
+st.markdown("""
+<style>
+
+h1 {
+    color: #2E7D32;
+    font-weight: 900;
+}
+
+h2, h3, h4 {
+    color: #1B5E20;
+}
+
+/* Teks besar berwarna */
+.big-green {
+    color: #00C853;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.big-orange {
+    color: #FF9800;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.big-red {
+    color: #E53935;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Highlight kalimat penting */
+.emphasis {
+    background-color: #FFF3CD;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+/* Box informasi berwarna */
+.box-green {
+    background-color: #E8F5E9;
+    padding: 10px 14px;
+    border-left: 6px solid #2E7D32;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.box-blue {
+    background-color: #E3F2FD;
+    padding: 10px 14px;
+    border-left: 6px solid #1E88E5;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.box-red {
+    background-color: #FFEBEE;
+    padding: 10px 14px;
+    border-left: 6px solid #E53935;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 # ==============================
 # SIDEBAR
 # ==============================
@@ -28,13 +98,26 @@ st.sidebar.caption("Dokumentasi proses pembuatan proyek Smart Palm Vision: Siste
 # 1. RINGKASAN SISTEM
 # ==============================
 if section == "Ringkasan Sistem":
-    st.title("Smart Palm Vision")
+    st.markdown('<h1 class="big-green">Smart Palm Vision</h1>', unsafe_allow_html=True)
+    st.markdown('<p class="emphasis">Sistem pendeteksi kematangan TBS kelapa sawit berbasis YOLO dan Streamlit.</p>', unsafe_allow_html=True)
+
     st.subheader("Dokumentasi Sistem Pendeteksi Kematangan TBS Sawit")
 
-    st.write(
-        "Halaman ini menampilkan dokumentasi lengkap proses pembuatan **Smart Palm Vision**, "
-        "yaitu sistem deteksi otomatis tingkat kematangan Tandan Buah Segar (TBS) kelapa sawit "
-        "menggunakan model computer vision berbasis YOLO dan antarmuka web Streamlit."
+    st.markdown(
+        """
+        Smart Palm Vision adalah sistem deteksi otomatis tingkat kematangan Tandan Buah Segar (TBS) kelapa sawit
+        menggunakan model computer vision berbasis YOLO dan antarmuka web Streamlit.
+        """
+    )
+
+    st.markdown(
+        """
+        <div class="box-blue">
+        Sistem ini dirancang agar dapat digunakan langsung di lapangan oleh operator,
+        dengan proses pengambilan foto TBS, deteksi tingkat kematangan, dan pencatatan hasil per pohon secara terstruktur.
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
     col1, col2 = st.columns(2)
@@ -49,6 +132,8 @@ if section == "Ringkasan Sistem":
             4. Menyediakan pencatatan otomatis hasil deteksi untuk setiap pohon.
             """
         )
+
+        st.markdown('<p class="big-orange">Fokus utama: membantu keputusan panen lebih cepat dan objektif.</p>', unsafe_allow_html=True)
 
         st.markdown("#### Komponen Utama")
         st.write(
@@ -73,11 +158,31 @@ if section == "Ringkasan Sistem":
             """
         )
 
+        st.markdown(
+            """
+            <div class="box-green">
+            Dengan alur ini, Smart Palm Vision dapat menjadi prototipe awal
+            untuk sistem pendukung keputusan panen kelapa sawit yang terukur dan terdokumentasi.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
 # ==============================
 # 2. DATASET & TRAINING YOLO
 # ==============================
 elif section == "Persiapan Dataset & Training YOLO":
-    st.title("Smart Palm Vision – Dataset & Training YOLO")
+    st.markdown('<h1 class="big-green">Smart Palm Vision – Dataset & Training YOLO</h1>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="box-blue">
+        Bagian ini menjelaskan bagaimana dataset TBS disiapkan di Roboflow,
+        kemudian digunakan untuk melatih model YOLOv8 di Google Colab.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("#### 1. Menyiapkan Dataset di Roboflow")
     st.write(
@@ -130,6 +235,8 @@ names:
         language="yaml"
     )
 
+    st.markdown('<p class="emphasis">Konfigurasi data.yaml harus konsisten dengan struktur folder dataset.</p>', unsafe_allow_html=True)
+
     st.markdown("#### 5. Instalasi YOLOv8 dan Training Model")
     st.code(
         """
@@ -158,13 +265,23 @@ files.download("runs/detect/train/weights/best.pt")
         language="python"
     )
 
-    st.write("File model diubah nama menjadi **sawit_tbs.pt** untuk digunakan di aplikasi Smart Palm Vision.")
+    st.markdown('<p class="big-green">File best.pt diunduh dan diubah nama menjadi sawit_tbs.pt untuk dipakai di aplikasi.</p>', unsafe_allow_html=True)
 
 # ==============================
 # 3. PERSIAPAN LINGKUNGAN PYTHON WINDOWS
 # ==============================
 elif section == "Persiapan Lingkungan Python di Windows":
-    st.title("Smart Palm Vision – Setup Python Windows")
+    st.markdown('<h1 class="big-green">Smart Palm Vision – Setup Python Windows</h1>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="box-green">
+        Bagian ini menjelaskan bagaimana menyiapkan lingkungan Python lokal
+        agar Smart Palm Vision dapat dijalankan di laptop Windows.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("#### 1. Struktur Folder Smart Palm Vision")
     st.code(
@@ -205,11 +322,23 @@ python -c "import ultralytics, cv2, numpy; print('Smart Palm Vision Ready')"
         language="bash"
     )
 
+    st.markdown('<p class="big-orange">Jika pesan Smart Palm Vision Ready muncul, lingkungan sudah siap digunakan.</p>', unsafe_allow_html=True)
+
 # ==============================
 # 4. DETEKSI WEBCAM
 # ==============================
 elif section == "Program Deteksi Webcam (detect_sawit.py)":
-    st.title("Smart Palm Vision – Program Deteksi Webcam")
+    st.markdown('<h1 class="big-green">Smart Palm Vision – Program Deteksi Webcam</h1>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="box-blue">
+        Program ini digunakan untuk menguji model YOLO secara langsung menggunakan kamera laptop.
+        Output berupa bounding box dan label Matang / Mengkal / Mentah.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("#### File detect_sawit.py")
     st.write("Skrip ini digunakan untuk menguji model YOLO secara langsung.")
@@ -257,11 +386,23 @@ if __name__ == "__main__":
         language="python"
     )
 
+    st.markdown('<p class="big-orange">Program ini cocok untuk demo cepat kemampuan deteksi real-time di laptop.</p>', unsafe_allow_html=True)
+
 # ==============================
 # 5. STREAMLIT APP
 # ==============================
 elif section == "Aplikasi Streamlit Deteksi TBS (streamlit_app.py)":
-    st.title("Smart Palm Vision – Aplikasi Streamlit")
+    st.markdown('<h1 class="big-green">Smart Palm Vision – Aplikasi Streamlit</h1>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="box-green">
+        Aplikasi Streamlit digunakan sebagai antarmuka Smart Palm Vision:
+        mengambil foto TBS, menjalankan deteksi YOLO, dan mencatat hasil per pohon.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("#### Aplikasi ini memungkinkan:")
     st.write(
@@ -360,7 +501,17 @@ st.dataframe(st.session_state.records)
 # 6. GITHUB & QR CODE
 # ==============================
 elif section == "Struktur Proyek & GitHub / QR Code":
-    st.title("Smart Palm Vision – Struktur Proyek & GitHub")
+    st.markdown('<h1 class="big-green">Smart Palm Vision – Struktur Proyek & GitHub</h1>', unsafe_allow_html=True)
+
+    st.markdown(
+        """
+        <div class="box-blue">
+        Bagian ini menjelaskan struktur akhir proyek, isi requirements,
+        dan bagaimana proyek didokumentasikan di GitHub serta dihubungkan dengan QR Code.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     st.markdown("#### Struktur Folder Final Smart Palm Vision")
     st.code(
@@ -390,13 +541,15 @@ numpy==1.26.4
     st.markdown("#### Dokumentasi ke GitHub & QR Code")
     st.write(
         """
-        1. Buat repository GitHub bernama **SmartPalmVision**.
+        1. Buat repository GitHub bernama SmartPalmVision.
         2. Upload semua file proyek ke GitHub.
-        3. Upload file **smartpalm_steps.py** ini juga.
+        3. Upload file smartpalm_steps.py ini juga.
         4. Deploy file dokumentasi ini ke Streamlit Cloud (jika ingin versi online).
         5. Ambil link aplikasi Streamlit dan ubah menjadi QR Code.
         6. QR code ditempatkan di laporan atau slide presentasi untuk penguji.
         """
     )
+
+    st.markdown('<p class="big-orange">Dengan QR Code, penguji dapat langsung membuka dokumentasi Smart Palm Vision secara interaktif.</p>', unsafe_allow_html=True)
 
     st.success("Smart Palm Vision documentation is ready for deployment and QR code use.")
